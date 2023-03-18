@@ -24,8 +24,10 @@ def port_scan(target, port_num):
 
     try:
         target_name = socket.gethostbyaddr(target_ip)
-        print("[*] Scan results for: {}".format(target_ip))
-
+        print("[*] Scan results for: {}".format(target_name[0]))
+    except OSError:
+        print('[*] Scan results for: {}'.format(target_ip))
+        
     t = threading.Thread(target=connection_scan, args=(target, int(port_num)))
     t.start()
 
